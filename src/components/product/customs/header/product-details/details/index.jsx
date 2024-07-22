@@ -1,4 +1,4 @@
-import { Divider, Rate, Tag } from "antd";
+import { Divider, Rate, Tag, Tooltip } from "antd";
 import { HeartOutlined } from "@ant-design/icons";
 import { useProductFeatures } from "../../../../features";
 import { useDispatch } from "react-redux";
@@ -11,7 +11,8 @@ const Details = () => {
   const { isAuthed } = useAuth();
   const dispatch = useDispatch();
   const {
-    product: { data }
+    product: { data },
+    user: { data: user }
   } = useProductFeatures();
 
   const addToWishlist = () => {
@@ -27,15 +28,32 @@ const Details = () => {
 
   return (
     <div className="flex-1">
-      <h3 className="text-[28px] font-bold">Barberton Daisy</h3>
-
-      <div className="flex w-full justify-between">
-        <h3 className="text-[28px] text-[#46A358] font-bold">${data.price}</h3>
-        <div className="flex gap-2">
+      <div className="flex justify-between">
+        <div className="flex items-center gap-4">
+          <Tooltip
+            className="w-[50px] h-[50px] router-full"
+            title={`${user?.name} ${user?.surname}`}
+          >
+            <img
+              className="rounded-full w-[50px] h-[50px] cursor-pointer"
+              src={user?.profile_photo}
+              alt={`${user?.name} ${user?.surname}`}
+            />
+          </Tooltip>
+          <div>
+            <h3 className="text-[28px] font-bold">Barberton Daisy</h3>
+            <h3 className="text-[28px] text-[#46A358] font-bold">
+              ${data.price}
+            </h3>
+          </div>
+        </div>
+        <div className="flex gap-2 items-end">
           <Rate />
           <p className="text-[12px]">{data.comments?.length} Customer Review</p>
         </div>
       </div>
+
+      {/* <div className="flex w-full justify-between"></div> */}
 
       <Divider />
 

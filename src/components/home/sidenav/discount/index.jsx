@@ -1,10 +1,26 @@
+import { useQuery } from "@tanstack/react-query";
+import { useAxios } from "../../../../hooks/useAxios";
+
 const Discount = () => {
+  const axios = useAxios();
+
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["discount"],
+    queryFn: async () => {
+      const { data } = await axios({
+        url: "/features/discount"
+      });
+      return data.data;
+    }
+  });
+
+  const loading = isLoading || isError;
+
   return (
     <div className="bg-[#d9fae0] w-full h-[300px] mt-[20px]">
-      <img
-        src="https://firebasestorage.googleapis.com/v0/b/aema-image-upload.appspot.com/o/greenshop%2Fimages%2Fflower1.png?alt=media&amptoken=0b53d608-7264-4c54-b497-a9bf054fcd9d"
-        alt=""
-      />
+      <h3 className="text-2xl font-bold text-center mb-4">{data?.title}</h3>
+      <p className="text-center">Discount up to {data?.discoount_up_to}%</p>
+      <img src={data?.poster_image_url} alt="" />
     </div>
   );
 };

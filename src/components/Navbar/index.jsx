@@ -1,14 +1,16 @@
 import {
   LoginOutlined,
   SearchOutlined,
-  ShoppingCartOutlined
+  ShoppingCartOutlined,
+  BarsOutlined
 } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { setAuthModal } from "../../redux/generic-slices/modals";
+import { setAuthModal, setSiteMap } from "../../redux/generic-slices/modals";
 import AuthModal from "./modals/auth";
 import { useAuth } from "../../configs/auth";
-
+import { Button } from "antd";
+import SiteMap from "./modals/sitemap";
 const Navbar = () => {
   const { isAuthed, getUser } = useAuth();
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ const Navbar = () => {
   return (
     <>
       <AuthModal />
+      <SiteMap />
       <div className="w-[80%] h-20 m-auto flex items-center justify-between border-b border-b[#46A358]">
         <div>
           <img
@@ -29,7 +32,7 @@ const Navbar = () => {
           ></img>
         </div>
 
-        <div className="flex gap-12 items-center h-full">
+        <div className="flex gap-12 items-center h-full max-md:hidden">
           <h3
             onClick={() => navigate("/")}
             className="relative cursor-pointer before:w-full before:h-1 before:absolute before:left-0 hover:before:bg-[#46A358] before:bottom-[-28px] before:content-['']"
@@ -47,7 +50,7 @@ const Navbar = () => {
           </h3>
         </div>
 
-        <div className="flex gap-[30px]">
+        <div className="flex gap-[30px] max-md:hidden">
           <SearchOutlined className="cursor-pointer text-[20px]" />
           <ShoppingCartOutlined className="cursor-pointer text-[20px]" />
           {isAuthed() ? (
@@ -66,6 +69,16 @@ const Navbar = () => {
               <LoginOutlined /> Login
             </button>
           )}
+        </div>
+        <div className="hidden max-md:flex gap-4">
+          <SearchOutlined className="cursor-pointer text-[20px]" />
+          <ShoppingCartOutlined className="cursor-pointer text-[20px]" />
+          <Button
+            onClick={() => dispatch(setSiteMap())}
+            className="hidden max-md:flex items-center justify-center"
+          >
+            <BarsOutlined />
+          </Button>
         </div>
       </div>
     </>
