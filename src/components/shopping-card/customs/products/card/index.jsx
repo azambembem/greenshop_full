@@ -2,7 +2,7 @@ import { DeleteOutlined } from "@ant-design/icons";
 import { useShoppingService } from "../../../../../service/shopping";
 
 const Card = (props) => {
-  const { onDelete } = useShoppingService();
+  const { onDelete, onIncrement, onDecrement } = useShoppingService();
   const { main_image, title, _id, quantity, price } = props;
   return (
     <div className="bg-[#FBFBFB] h-[70px] w-full flex">
@@ -21,11 +21,17 @@ const Card = (props) => {
       <div className="w-[20%] flex items-center text-[#727272]">${price}</div>
       <div className="w-[20%] flex items-center">
         <div className="flex gap-3">
-          <button className="w-[25px] h-[25px] bg-[#46A358] rounded-full text-white">
+          <button
+            onClick={() => onDecrement(props)}
+            className="w-[25px] h-[25px] bg-[#46A358] rounded-full text-white"
+          >
             -
           </button>
           <h3 className="font-medium text-[18px]">{quantity}</h3>
-          <button className="w-[25px] h-[25px] bg-[#46A358] rounded-full text-white">
+          <button
+            onClick={() => onIncrement(props)}
+            className="w-[25px] h-[25px] bg-[#46A358] rounded-full text-white"
+          >
             +
           </button>
         </div>
