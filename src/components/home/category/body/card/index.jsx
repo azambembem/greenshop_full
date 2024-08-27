@@ -7,15 +7,17 @@ import { useAuth } from "../../../../../configs/auth";
 import { useDispatch } from "react-redux";
 import { setAuthModal } from "../../../../../redux/generic-slices/modals";
 import { useNavigate } from "react-router-dom";
+import { useShoppingService } from "../../../../../service/shopping";
 
-const Card = ({ title, main_image, price, _id, category }) => {
+const Card = (props) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isAuthed } = useAuth();
 
-  const addToShoppingCart = (setAuthModal) => {
-    if (!isAuthed()) return dispatch(setAuthModal());
-  };
+  const { title, main_image, price, _id, category } = props;
+
+  const { onAdd } = useShoppingService();
+
   const addToWishlist = () => {
     if (!isAuthed()) return dispatch(setAuthModal());
   };
@@ -30,7 +32,7 @@ const Card = ({ title, main_image, price, _id, category }) => {
 
         <div className="absolute w-full bottom-2 m-auto flex gap-4 items-center inset-x-auto z-10 hideen group-hover:flex">
           <div
-            onClick={addToShoppingCart}
+            onClick={() => onAdd(props)}
             className="w-[35px] h-[35px] rounded-md  bg-white flex items-center justify-center cursor-pointer"
           >
             <ShoppingCartOutlined />

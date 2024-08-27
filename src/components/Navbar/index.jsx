@@ -9,12 +9,14 @@ import { useNavigate } from "react-router-dom";
 import { setAuthModal, setSiteMap } from "../../redux/generic-slices/modals";
 import AuthModal from "./modals/auth";
 import { useAuth } from "../../configs/auth";
-import { Button } from "antd";
+import { Badge, Button } from "antd";
 import SiteMap from "./modals/sitemap";
+import { useShoppingService } from "../../service/shopping";
 const Navbar = () => {
   const { isAuthed, getUser } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { products } = useShoppingService();
 
   const { user } = getUser();
 
@@ -52,7 +54,12 @@ const Navbar = () => {
 
         <div className="flex gap-[30px] max-md:hidden">
           <SearchOutlined className="cursor-pointer text-[20px]" />
-          <ShoppingCartOutlined className="cursor-pointer text-[20px]" />
+          <Badge count={products?.length} className="mt-[5px]">
+            <ShoppingCartOutlined
+              onClick={() => navigate("/shopping-card")}
+              className="cursor-pointer text-[25px]"
+            />
+          </Badge>
           {isAuthed() ? (
             <button
               type="button"
@@ -72,7 +79,9 @@ const Navbar = () => {
         </div>
         <div className="hidden max-md:flex gap-4">
           <SearchOutlined className="cursor-pointer text-[20px]" />
-          <ShoppingCartOutlined className="cursor-pointer text-[20px]" />
+          <Badge count={5}>
+            <ShoppingCartOutlined className="cursor-pointer text-[20px]" />
+          </Badge>
           <Button
             onClick={() => dispatch(setSiteMap())}
             className="hidden max-md:flex items-center justify-center"
