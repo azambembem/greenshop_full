@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const shopping = createSlice({
   name: "shopping",
   initialState: {
-    products: [],
+    products: JSON.parse(localStorage.getItem("products") ?? "[]"),
     coupon: null
   },
   reducers: {

@@ -4,7 +4,7 @@ import { carousel_mock } from "../../../utils/mock";
 
 const SliderSecion = () => {
   return (
-    <div className="h-[450px] m-auto bg-[#f5f5f5] mt-3">
+    <div>
       <Carousel>
         {carousel_mock.map((item) => (
           <Slide key={item.id} {...item} />
