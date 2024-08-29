@@ -12,14 +12,13 @@ export const useShoppingService = () => {
   // update increment | decrement
 
   const onAdd = (product) => {
-    const index = products.find((item) => item._id === product._id);
+    const index = products?.find((item) => item._id === product._id);
+
+    notification.success({ message: "Product added to cart" });
 
     if (!index) {
-      const newProduct = { ...product, quantity: 1 };
-      localStorage.setItem(
-        "products",
-        JSON.stringify([...products, newProduct])
-      );
+      const newProduct = [...products, { ...product, quantity: 1 }];
+      localStorage.setItem("products", JSON.stringify(newProduct));
       return dispatch(setShoppingProducts(newProduct));
     }
 
@@ -60,6 +59,11 @@ export const useShoppingService = () => {
     dispatch(setShoppingProducts(newProduct));
   };
 
+  const onClear = () => {
+    localStorage.removeItem("products");
+    dispatch(setShoppingProducts([]));
+  };
+
   const applyCoupon = async (coupon_code) => {
     const { data } = await axios({
       url: "/features/coupon",
@@ -81,6 +85,7 @@ export const useShoppingService = () => {
     onIncrement,
     onDecrement,
     applyCoupon,
+    onClear,
     coupon
   };
 };

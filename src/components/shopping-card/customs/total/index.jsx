@@ -10,7 +10,7 @@ const Total = () => {
   const { products, applyCoupon, coupon } = useShoppingService();
   const couponRef = useRef();
 
-  const total = products.reduce((prev, { quantity, price }) => {
+  const total = products?.reduce((prev, { quantity, price }) => {
     return quantity * price + prev;
   }, 0);
 
@@ -66,7 +66,10 @@ const Total = () => {
           )}
         </h1>
       </div>
-      <button className="bg-[#46A358] flex rounded-md items-center justify-center gap-1 text-base text-white w-full h-[40px] mt-[30px]">
+      <button
+        onClick={() => navigate("/product-checkout")}
+        className="bg-[#46A358] flex rounded-md items-center justify-center gap-1 text-base text-white w-full h-[40px] mt-[30px]"
+      >
         Proceed to Checkout
       </button>
       <h3
