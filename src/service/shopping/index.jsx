@@ -64,6 +64,12 @@ export const useShoppingService = () => {
     dispatch(setShoppingProducts([]));
   };
 
+  const setInitial = () => {
+    localStorage.removeItem("products");
+    dispatch(setShoppingProducts([]));
+    dispatch(setCoupon(null));
+  };
+
   const applyCoupon = async (coupon_code) => {
     const { data } = await axios({
       url: "/features/coupon",
@@ -86,6 +92,7 @@ export const useShoppingService = () => {
     onDecrement,
     applyCoupon,
     onClear,
-    coupon
+    coupon,
+    setInitial
   };
 };

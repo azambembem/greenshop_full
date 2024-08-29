@@ -3,14 +3,15 @@ import { LoadingOutlined } from "@ant-design/icons";
 import { useState } from "react";
 import { useAuth } from "../../../../configs/auth";
 import { useDispatch } from "react-redux";
-import { setAuthModal } from "../../../../redux/generic-slices/modals";
+import {
+  setAuthModal,
+  setConfirmModal
+} from "../../../../redux/generic-slices/modals";
 import { useAxios } from "../../../../hooks/useAxios";
 import { useShoppingService } from "../../../../service/shopping";
-import { useNavigate } from "react-router-dom";
 
 const BillingAddress = () => {
-  const navigate = useNavigate();
-  const { products, onClear, coupon } = useShoppingService();
+  const { products, coupon } = useShoppingService();
   const axios = useAxios();
   const dispatch = useDispatch();
   const { isAuthed } = useAuth();
@@ -36,7 +37,7 @@ const BillingAddress = () => {
         extra_shop_info: {
           total_price: coupon
             ? total
-            : Number(total * Number(`0.${coupon.discount_for}`)),
+            : Number(total * Number(`0.${coupon?.discount_for ?? 0}`)),
           method: values.payment_method,
           coupon: {
             has_coupon: Boolean(coupon),
@@ -46,8 +47,7 @@ const BillingAddress = () => {
       }
     });
     setLoading(false);
-    onClear();
-    navigate("/");
+    dispatch(setConfirmModal());
     notification.success({
       message: "Order placed successfully"
     });
@@ -316,7 +316,7 @@ const BillingAddress = () => {
                 value="dorect-bank-transfer"
                 className="border border-[#46A358] w-full h-[40px] flex items-center pl-[10px] rounded-lg"
               >
-                Dorect bank transfer
+                Direct bank transfer
               </Radio>
               <Radio
                 value="cash-on-delivery"
