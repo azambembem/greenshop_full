@@ -62,6 +62,7 @@ const Navbar = () => {
           </Badge>
           {isAuthed() ? (
             <button
+              onClick={() => navigate("/profile")}
               type="button"
               className="w-[100px] h-[35px] bg-[#46A358] rounded-[6px] flex gap-2 justify-center items-center text-white cursor-pointer"
             >

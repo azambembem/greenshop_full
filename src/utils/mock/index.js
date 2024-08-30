@@ -7,6 +7,7 @@ import {
 } from "@ant-design/icons";
 
 import AccountDetails from "../../components/profile/account-details";
+import Address from "../../components/profile/address";
 
 export const carousel_mock = [
   {
@@ -65,7 +66,7 @@ export const dashboard_mock = [
   {
     path: "address",
     Icon: EnvironmentOutlined,
-    Component: AccountDetails,
+    Component: Address,
     title: "Address",
     id: 2
   },
