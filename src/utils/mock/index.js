@@ -8,6 +8,8 @@ import {
 
 import AccountDetails from "../../components/profile/account-details";
 import Address from "../../components/profile/address";
+import Wishlist from "../../components/profile/wishlist";
+import TrackOrder from "../../components/profile/track-order";
 
 export const carousel_mock = [
   {
@@ -73,14 +75,14 @@ export const dashboard_mock = [
   {
     path: "wishlist",
     Icon: HeartOutlined,
-    Component: AccountDetails,
+    Component: Wishlist,
     title: "Wishlist",
     id: 3
   },
   {
     path: "track-order",
     Icon: DashboardOutlined,
-    Component: AccountDetails,
+    Component: TrackOrder,
     title: "Track Order",
     id: 4
   }

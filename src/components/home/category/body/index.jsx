@@ -27,9 +27,8 @@ const Body = () => {
     }
   });
 
-  console.log(data);
   return (
-    <div className="flex flex-wrap gap-4">
+    <div className="mt-[30px] grid grid-cols gap-4 max-sm:grid-cols-2">
       {isLoading
         ? Array.from({ length: 15 }).map((_, idx) => <Loading key={idx} />)
         : data?.map((item) => <Card key={item.id} {...item} />)}
