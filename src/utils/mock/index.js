@@ -10,6 +10,7 @@ import AccountDetails from "../../components/profile/account-details";
 import Address from "../../components/profile/address";
 import Wishlist from "../../components/profile/wishlist";
 import TrackOrder from "../../components/profile/track-order";
+import MyProducts from "../../components/profile/my-products";
 
 export const carousel_mock = [
   {
@@ -61,7 +62,7 @@ export const dashboard_mock = [
   {
     path: "my-products",
     Icon: ShoppingOutlined,
-    Component: AccountDetails,
+    Component: MyProducts,
     title: "My Products",
     id: 1
   },

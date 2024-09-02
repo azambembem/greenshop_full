@@ -45,3 +45,7 @@
 .ant-radio-wrapper:hover .ant-radio-inner {
   border-color: #46a358;
 }
+.ant-skeleton-image-svg {
+  padding: 10px;
+
+}
