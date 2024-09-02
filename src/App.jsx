@@ -6,8 +6,10 @@ import ShoppingCard from "./pages/shopping-card";
 import ProductCheckout from "./components/product-checkout";
 import Profile from "./pages/profile";
 import { dashboard_mock } from "./utils/mock";
+import { useAuth } from "./configs/auth";
 
 const App = () => {
+  const { isAuthed } = useAuth();
   return (
     <div>
       <Navbar />
@@ -16,11 +18,13 @@ const App = () => {
         <Route path="/product/:category/:productId" element={<Product />} />
         <Route path="/shopping-card" element={<ShoppingCard />} />
         <Route path="/product-checkout" element={<ProductCheckout />} />
-        <Route path="/profile" element={<Profile />}>
-          {dashboard_mock.map(({ path, Component }) => (
-            <Route key={path} path={path} element={<Component />} />
-          ))}
-        </Route>
+        {isAuthed() && (
+          <Route path="/profile" element={<Profile />}>
+            {dashboard_mock.map(({ path, Component, id }) => (
+              <Route key={id} path={path} element={<Component />} />
+            ))}
+          </Route>
+        )}
       </Routes>
     </div>
   );

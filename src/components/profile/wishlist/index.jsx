@@ -34,14 +34,16 @@ const Wishlist = () => {
     );
   if (!data.length)
     return (
-      <Empty
-        className="mt-[10px] "
-        description={
-          <div>
-            <h3 className="text-[18px] text-bold">No wishproducts yet...</h3>
-          </div>
-        }
-      />
+      <div className="w-full flex-justify-center items-center">
+        <Empty
+          className="mt-[10px] "
+          description={
+            <div>
+              <h3 className="text-[18px] text-bold">No wishproducts yet...</h3>
+            </div>
+          }
+        />
+      </div>
     );
 
   return (

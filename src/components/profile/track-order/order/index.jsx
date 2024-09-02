@@ -1,6 +1,9 @@
 import { Tooltip } from "antd";
+import { useDispatch } from "react-redux";
+import { setOrderModal } from "../../../../redux/generic-slices/modals";
 
 const Order = (props) => {
+  const dispatch = useDispatch();
   const { _id, created_at, extra_shop_info } = props;
 
   const total = extra_shop_info?.total_price ?? 0;
@@ -39,7 +42,14 @@ const Order = (props) => {
         <div className="border-r m-[4px] border-[#46A35833]">
           <h3 className="font-light">More</h3>
           <Tooltip title="Detailed info">
-            <h3 className="text-[#46A358] cursor-pointer">Get details</h3>
+            <h3
+              className="text-[#46A358] cursor-pointer"
+              onClick={() =>
+                dispatch(setOrderModal({ show: true, data: props }))
+              }
+            >
+              Get details
+            </h3>
           </Tooltip>
         </div>
       </div>

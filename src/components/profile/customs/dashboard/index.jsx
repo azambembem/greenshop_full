@@ -2,6 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { dashboard_mock } from "../../../../utils/mock";
 import { LogoutOutlined, ExclamationCircleFilled } from "@ant-design/icons";
 import { Modal } from "antd";
+import { useAuth } from "../../../../configs/auth";
 const { confirm } = Modal;
 
 const active_style =
@@ -10,6 +11,8 @@ const active_style =
 export const Dashboard = () => {
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { signOut } = useAuth();
+
   const onLogout = () => {
     return confirm({
       title: "Do you want to logout?",
@@ -20,7 +23,8 @@ export const Dashboard = () => {
       },
       okText: "I'm sure",
       onOk: () => {
-        console.log("Ok");
+        window.location.replace("/");
+        signOut();
       }
     });
   };
