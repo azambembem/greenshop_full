@@ -7,7 +7,8 @@ const modal = createSlice({
     authModal: false,
     siteMap: false,
     confirmModal: false,
-    orderModal: { show: false, data: null }
+    orderModal: { show: false, data: null },
+    addModal: false
   },
   reducers: {
     setCategoryModal: (state) => {
@@ -24,6 +25,9 @@ const modal = createSlice({
     },
     setOrderModal: (state, { payload }) => {
       state.orderModal = payload;
+    },
+    setAddModal: (state) => {
+      state.addModal = !state.addModal;
     }
   }
 });
@@ -34,5 +38,6 @@ export const {
   setAuthModal,
   setSiteMap,
   setConfirmModal,
-  setOrderModal
+  setOrderModal,
+  setAddModal
 } = modal.actions;

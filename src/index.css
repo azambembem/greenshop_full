@@ -49,3 +49,26 @@
   padding: 10px;
 
 }
+ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload.ant-upload-select {
+  width: 100%;
+}
+.ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload-list.ant-upload-list-picture-card
+  .ant-upload-list-item-container {
+  width: 100%;
+  height: 200px;
+}
+
+.ant-tabs .ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #46a358;
+  border-color: #46a358 !important;
+}
+.ant-tabs .ant-tabs-ink-bar {
+  background: #46a358 !important;
+}
+.ant-upload-wrapper.ant-upload-picture-card-wrapper
+  .ant-upload-list.ant-upload-list-picture-card
+  .ant-upload-list-item-actions {
+  z-index: 0;
+}
