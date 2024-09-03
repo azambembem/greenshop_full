@@ -2,21 +2,27 @@ import {
   LoginOutlined,
   SearchOutlined,
   ShoppingCartOutlined,
-  BarsOutlined
+  BarsOutlined,
+  BellOutlined
 } from "@ant-design/icons";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { setAuthModal, setSiteMap } from "../../redux/generic-slices/modals";
 import AuthModal from "./modals/auth";
 import { useAuth } from "../../configs/auth";
-import { Badge, Button } from "antd";
+import { Badge, Button, Popover } from "antd";
 import SiteMap from "./modals/sitemap";
 import { useShoppingService } from "../../service/shopping";
+import Notifications from "./customs/notification";
+import { useState } from "react";
+
 const Navbar = () => {
   const { isAuthed, getUser } = useAuth();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const { products } = useShoppingService();
+
+  const [open, setOpen] = useState(false);
 
   const { user } = getUser();
 
@@ -54,12 +60,33 @@ const Navbar = () => {
 
         <div className="flex gap-[30px] max-md:hidden">
           <SearchOutlined className="cursor-pointer text-[20px]" />
+
+          <Popover
+            onOpenChange={(visbility) => {
+              if (!isAuthed()) return dispatch(setAuthModal());
+
+              setOpen(visbility);
+            }}
+            open={open}
+            title="Notifications"
+            trigger="click"
+            content={
+              <div>
+                <Notifications />
+              </div>
+            }
+          >
+            <Badge dot={isAuthed} className="mt-[5px]">
+              <BellOutlined className="cursor-pointer text-[23px]" />
+            </Badge>
+          </Popover>
           <Badge count={products?.length} className="mt-[5px]">
             <ShoppingCartOutlined
               onClick={() => navigate("/shopping-card")}
               className="cursor-pointer text-[25px]"
             />
           </Badge>
+
           {isAuthed() ? (
             <button
               onClick={() => navigate("/profile")}
@@ -80,6 +107,7 @@ const Navbar = () => {
         </div>
         <div className="hidden max-md:flex gap-4">
           <SearchOutlined className="cursor-pointer text-[20px]" />
+
           <Badge count={5}>
             <ShoppingCartOutlined className="cursor-pointer text-[20px]" />
           </Badge>
