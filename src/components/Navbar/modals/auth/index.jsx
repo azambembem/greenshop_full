@@ -1,9 +1,9 @@
 import { Modal } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import { setAuthModal } from "../../../../redux/generic-slices/modals";
-import Login from "./login";
+import Login from "./login"; //
 import { useState } from "react";
-import Register from "./register";
+import Register from "./register"; //
 
 const AuthModal = () => {
   const dispatch = useDispatch();

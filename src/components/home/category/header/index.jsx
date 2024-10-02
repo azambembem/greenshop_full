@@ -14,7 +14,7 @@ const Header = () => {
   const type = getParams("type") ?? "all-plants";
 
   return (
-    <div className="w-full flex justify-between items-cneter">
+    <div className="w-full flex justify-between items-center">
       <div className="flex gap-8">
         <h3
           onClick={() => setParams({ type: "all-plants" })}

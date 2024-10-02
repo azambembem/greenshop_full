@@ -19,7 +19,7 @@ const Notifications = () => {
 
   if (isLoading || isError)
     return (
-      <div className="flex flex-col gap-2 mt-2 items-cneter">
+      <div className="flex flex-col gap-2 mt-2 items-center">
         <Spin size="large" />
 
         <h3>Loading...</h3>

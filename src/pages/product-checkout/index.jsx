@@ -1,7 +1,7 @@
-import ProductCheckout from "../../components/product-checkout";
+import ProductCheckoutComponent from "../../components/ProductCheckout";
 
 const ProductCheckout = () => {
-  return <ProductCheckout />;
+  return <ProductCheckoutComponent />;
 };
 
 export default ProductCheckout;

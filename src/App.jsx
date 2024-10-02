@@ -7,6 +7,7 @@ import ProductCheckout from "./components/product-checkout";
 import Profile from "./pages/profile";
 import { dashboard_mock } from "./utils/mock";
 import { useAuth } from "./configs/auth";
+// import Footer from "./components/Footer";
 
 const App = () => {
   const { isAuthed } = useAuth();
@@ -26,6 +27,7 @@ const App = () => {
           </Route>
         )}
       </Routes>
+      {/* <Footer /> */}
     </div>
   );
 };
